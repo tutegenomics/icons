@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/tutegenomics/icons",
   "devDependencies": {
-    "gulp-svg-symbols": "^0.3.1"
+    "gulp-svg-symbols": "^0.3.1",
+    "gulp-svgmin": "^1.2.0"
   }
 }
