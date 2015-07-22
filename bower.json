@@ -1,0 +1,17 @@
+{
+  "name": "icons",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tutegenomics/icons",
+  "authors": [
+    "Tony <tonylefler@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "svg"
+  ]
+}
