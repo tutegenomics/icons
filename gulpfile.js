@@ -8,7 +8,7 @@ var file = require('gulp-file');
 var fs = require("fs");
 
 gulp.task('build', function() {
-    runSequence('svg-build', 'clean-svg', 'inject-svg');
+    runSequence('svg-build', 'clean-svg', 'inject-svg', 'copy-css');
 });
 
 gulp.task('svg-build', function() {
@@ -29,4 +29,9 @@ gulp.task('inject-svg', function(){
     gulp.src(['build/icon-push.js'])
         .pipe(replace('-svg-', svg))
         .pipe(gulp.dest('dist'));
+});
+
+gulp.task('copy-css', function() {
+    gulp.src('build/svg-symbols.css')
+        .pipe(gulp.dest('dist'))
 });
