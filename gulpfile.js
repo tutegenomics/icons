@@ -1,10 +1,32 @@
 var gulp = require('gulp');
 var svgSymbols = require('gulp-svg-symbols');
-var svgmin = require('gulp-svgmin');
+var htmlclean = require('gulp-htmlclean');
+var replace = require('gulp-replace');
+var runSequence = require('run-sequence');
+var file = require('gulp-file');
+
+var fs = require("fs");
 
 gulp.task('build', function() {
-    gulp.src('svg/*.svg')
-        .pipe(svgSymbols())
-        .pipe(gulp.dest('dist'));
+    runSequence('svg-build', 'clean-svg', 'inject-svg');
+});
 
+gulp.task('svg-build', function() {
+    gulp.src('build/svg/*.svg')
+        .pipe(svgSymbols())
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('clean-svg', function() {
+    gulp.src('build/svg-symbols.svg')
+        .pipe(htmlclean())
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('inject-svg', function(){
+    var svg = fs.readFileSync("dist/svg-symbols.svg", "utf8");
+
+    gulp.src(['build/icon-push.js'])
+        .pipe(replace('-svg-', svg))
+        .pipe(gulp.dest('dist'));
 });

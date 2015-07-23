@@ -13,5 +13,8 @@
     "test",
     "tests",
     "svg"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.4.3"
+  }
 }
