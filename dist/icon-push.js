@@ -8,13 +8,15 @@ angular.module('iconPush', [])
         }
     })
 
-    .directive('icon', function() {
+    .directive('icon', function($compile) {
         return {
             restrict: 'E',
-            replace: true,
-            link: function(scope, element,attrs) {
-                scope.class = attrs.class;
-            },
-            template: '<svg role="img" class="{{class}}"><use xlink:href="#{{class}}"></use></svg>'
+            compile: function(element, attrs) {
+                return function(scope, iElem, iAttrs) {
+                    var html ='<svg role="img" class="'+attrs.class+'"><use xlink:href="#' + attrs.class+'"></use></svg>';
+                    var e = $compile(html)(scope);
+                    iElem.replaceWith(e);
+                };
+            }
         }
     });
