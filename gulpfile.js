@@ -3,6 +3,7 @@ var svgSymbols = require('gulp-svg-symbols');
 var htmlclean = require('gulp-htmlclean');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
+var cheerio = require('gulp-cheerio');
 var file = require('gulp-file');
 
 var fs = require("fs");
@@ -20,6 +21,11 @@ gulp.task('svg-build', function() {
 gulp.task('clean-svg', function() {
     gulp.src('build/svg-symbols.svg')
         .pipe(htmlclean())
+        .pipe(cheerio({
+            run: function ($) {
+                $('[fill]').removeAttr('fill');
+            }
+        }))
         .pipe(gulp.dest('dist'));
 });
 
@@ -32,6 +38,6 @@ gulp.task('inject-svg', function(){
 });
 
 gulp.task('copy-css', function() {
-    gulp.src('build/svg-symbols.css')
+    gulp.src('build/icon-push.css')
         .pipe(gulp.dest('dist'))
 });
