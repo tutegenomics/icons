@@ -10,8 +10,8 @@ var babel = require('gulp-babel');
 var fs = require('fs');
 
 
-gulp.task('svg-sequence', function() {
-    runSequence('svg-build', 'inject-svg');
+gulp.task('svg-sequence', function(cb) {
+    runSequence('svg-build', 'inject-svg', cb);
 });
 
 
