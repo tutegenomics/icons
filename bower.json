@@ -5,6 +5,7 @@
   "authors": [
     "Tony <tonylefler@gmail.com>"
   ],
+  "main": "dist/icon-push.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -15,6 +16,6 @@
     "svg"
   ],
   "dependencies": {
-    "angular": "~1.4.3"
+    "angular": ">=1.1"
   }
 }

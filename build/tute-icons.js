@@ -1,4 +1,4 @@
-angular.module('iconPush', [])
+angular.module('tute-icons', [])
     
     .provider('iconPushProvider', function iconPushProvider() {
         let defaults = {
