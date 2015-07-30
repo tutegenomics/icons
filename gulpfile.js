@@ -48,7 +48,7 @@ gulp.task('svg-build', function() {
 gulp.task('inject-svg', function(){
     var svg = fs.readFileSync('dist/svg-symbols.svg', 'utf8');
 
-    return gulp.src(['build/icon-push.js'])
+    return gulp.src(['build/tute-icons.js'])
         .pipe(babel())
         .pipe(replace('__SVG__', svg))
         .pipe(gulp.dest('dist'));
@@ -64,7 +64,7 @@ gulp.task('demo', function () {
 
 
 gulp.task('copy-css', function() {
-    return gulp.src('build/icon-push.css')
+    return gulp.src('build/tute-icons.css')
         .pipe(gulp.dest('dist'))
 });
 
