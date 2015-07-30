@@ -8,18 +8,20 @@
     		font-size: 16px;
     		font-family: sans-serif;
     	}
-    	.icon {
+    	.icon-ex {
     		height: 52px;
     		width: 52px;
-    	}
-    	.icon-sm {
-    		height: 24px;
-    		width: 24px;
+    		fill: #555;
+    		display: inline-block;
+    		vertical-align: middle;
     	}
     	.blue {
+    		font-size: 24px;
     		color: steelblue;
     	}
-    	.blue svg {
+    	.blue .icon-ex {
+    	    height: 24px;
+    		width: 24px;
     		fill: steelblue;
     	}
     </style>
@@ -27,20 +29,34 @@
 <body>
 
 	<main ng-app="exampleApp">
-		<icon-push></icon-push>
+		<!-- outputs symbol definition xml -->
+		<icon-defs></icon-defs>
 
-		<icon icon="github"></icon>
-		<icon icon="twitter"></icon>
+		<!-- use svg symbol/icon -->
+		<icon icon="apps" class="my custom classes here"></icon>
+		<icon icon="grid-on"></icon>
 		
 		<p class="blue">
-			Check me out on <icon icon="linkedin" class="icon-sm"></icon>
+			Menu <icon icon="menu" class="icon-sm"></icon>
 		</p>
 
 	</main>
 
 	<script src="build/lib/angular/angular.min.js"></script>
 	<script src="dist/icon-push.js"></script>
-	<script src="example.js"></script>
+	<script>
+		//include module in app
+		angular.module('exampleApp', [
+			'iconPush'
+		])
+		//if you want to configure options: 
+		.run(function(iconPushProvider) {
+			iconPushProvider.setOpts({
+				baseClass: 'icon-ex'
+			});
+		});
+
+	</script>
 
 </body>
 </html>

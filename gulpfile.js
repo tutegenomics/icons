@@ -6,17 +6,27 @@ var runSequence = require('run-sequence');
 var cheerio = require('gulp-cheerio');
 var file = require('gulp-file');
 var watch = require('gulp-watch');
+var babel = require('gulp-babel');
 var fs = require('fs');
 
 
-gulp.task('build', function() {
-    runSequence('svg-build', 'inject-svg', 'copy-css');
+gulp.task('svg-sequence', function() {
+    runSequence('svg-build', 'inject-svg');
 });
 
 
+//generate svg file
 gulp.task('svg-build', function() {
-    return gulp.src('build/svg/*.svg')
-        .pipe(svgSymbols())
+    var allIcons = [];
+
+    var stream = gulp.src('build/svg/*.svg')
+        .pipe(svgSymbols({
+            templates: [ 'default-svg' ],
+            transformData: function(svg, defaultData) {
+                allIcons.push(defaultData.id);
+                return defaultData;
+            }
+        }))
         .pipe(htmlclean())
         .pipe(cheerio({
             run: function ($) {
@@ -24,22 +34,32 @@ gulp.task('svg-build', function() {
             }
         }))
         .pipe(gulp.dest('dist'));
+
+    //when the stream is done, allIcons is full, so we can output it
+    stream.on('end', function() {
+         fs.writeFile('./dist/icons-manifest.json', JSON.stringify(allIcons, null, 4));
+    });
+
+    return stream;
 });
 
 
-gulp.task('demo', function () {
-    return gulp.src('build/svg/*.svg')
-      .pipe(svgSymbols.demoPage())
-      .pipe(gulp.dest('dist'));
-});
-
-
+//inline SVG defs into JS file
 gulp.task('inject-svg', function(){
     var svg = fs.readFileSync('dist/svg-symbols.svg', 'utf8');
 
     return gulp.src(['build/icon-push.js'])
-        .pipe(replace('-svg-', svg))
+        .pipe(babel())
+        .pipe(replace('__SVG__', svg))
         .pipe(gulp.dest('dist'));
+});
+
+
+//generate demo page
+gulp.task('demo', function () {
+    return gulp.src('build/svg/*.svg')
+      .pipe(svgSymbols.demoPage())
+      .pipe(gulp.dest('dist'));
 });
 
 
@@ -55,5 +75,7 @@ gulp.task('watch', function() {
     });
 });
 
+
+gulp.task('build', ['svg-sequence' ,'demo', 'copy-css']);
 
 gulp.task('default', ['build', 'watch'])

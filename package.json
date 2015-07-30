@@ -17,6 +17,7 @@
   "homepage": "https://github.com/tutegenomics/icons",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
     "gulp-cheerio": "^0.6.2",
     "gulp-file": "^0.2.0",
     "gulp-htmlclean": "^2.6.4",
