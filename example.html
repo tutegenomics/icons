@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tute Icons</title>
+    <link rel="stylesheet" href="dist/icon-push.css">
+    <style>
+    	html {
+    		font-size: 16px;
+    		font-family: sans-serif;
+    	}
+    	.icon {
+    		height: 52px;
+    		width: 52px;
+    	}
+    	.icon-sm {
+    		height: 24px;
+    		width: 24px;
+    	}
+    	.blue {
+    		color: steelblue;
+    	}
+    	.blue svg {
+    		fill: steelblue;
+    	}
+    </style>
+</head>
+<body>
+
+	<main ng-app="exampleApp">
+		<icon-push></icon-push>
+
+		<icon icon="github"></icon>
+		<icon icon="twitter"></icon>
+		
+		<p class="blue">
+			Check me out on <icon icon="linkedin" class="icon-sm"></icon>
+		</p>
+
+	</main>
+
+	<script src="build/lib/angular/angular.min.js"></script>
+	<script src="dist/icon-push.js"></script>
+	<script src="example.js"></script>
+
+</body>
+</html>

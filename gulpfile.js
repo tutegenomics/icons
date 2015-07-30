@@ -5,21 +5,18 @@ var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
 var cheerio = require('gulp-cheerio');
 var file = require('gulp-file');
+var watch = require('gulp-watch');
+var fs = require('fs');
 
-var fs = require("fs");
 
 gulp.task('build', function() {
-    runSequence('svg-build', 'clean-svg', 'inject-svg', 'copy-css');
+    runSequence('svg-build', 'inject-svg', 'copy-css');
 });
+
 
 gulp.task('svg-build', function() {
-    gulp.src('build/svg/*.svg')
+    return gulp.src('build/svg/*.svg')
         .pipe(svgSymbols())
-        .pipe(gulp.dest('build'));
-});
-
-gulp.task('clean-svg', function() {
-    gulp.src('build/svg-symbols.svg')
         .pipe(htmlclean())
         .pipe(cheerio({
             run: function ($) {
@@ -29,15 +26,34 @@ gulp.task('clean-svg', function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('inject-svg', function(){
-    var svg = fs.readFileSync("dist/svg-symbols.svg", "utf8");
 
-    gulp.src(['build/icon-push.js'])
+gulp.task('demo', function () {
+    return gulp.src('build/svg/*.svg')
+      .pipe(svgSymbols.demoPage())
+      .pipe(gulp.dest('dist'));
+});
+
+
+gulp.task('inject-svg', function(){
+    var svg = fs.readFileSync('dist/svg-symbols.svg', 'utf8');
+
+    return gulp.src(['build/icon-push.js'])
         .pipe(replace('-svg-', svg))
         .pipe(gulp.dest('dist'));
 });
 
+
 gulp.task('copy-css', function() {
-    gulp.src('build/icon-push.css')
+    return gulp.src('build/icon-push.css')
         .pipe(gulp.dest('dist'))
 });
+
+
+gulp.task('watch', function() {
+    watch('build/**/*', function() {
+        gulp.start('build');
+    });
+});
+
+
+gulp.task('default', ['build', 'watch'])
