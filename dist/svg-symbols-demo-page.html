@@ -28,6 +28,18 @@
       p {
         margin: 0; padding: 0 0 .5em;
       }
+      .add-circle-outline {
+        width: 24px;
+        height: 24px;
+      }
+      .add-circle {
+        width: 24px;
+        height: 24px;
+      }
+      .add {
+        width: 24px;
+        height: 24px;
+      }
       .apps {
         width: 24px;
         height: 24px;
@@ -225,6 +237,18 @@
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="add-circle-outline" viewBox="0 0 24 24">
+      <title>add-circle-outline icon</title>
+      <path fill="#404040" d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.475 2 2 6.475 2 12s4.475 10 10 10 10-4.475 10-10S17.525 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+    </symbol>
+    <symbol id="add-circle" viewBox="0 0 24 24">
+      <title>add-circle icon</title>
+      <path fill="#404040" d="M12 2C6.475 2 2 6.475 2 12s4.475 10 10 10 10-4.475 10-10S17.525 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+    </symbol>
+    <symbol id="add" viewBox="0 0 24 24">
+      <title>add icon</title>
+      <path fill="#404040" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+    </symbol>
     <symbol id="apps" viewBox="0 0 24 24">
       <title>apps icon</title>
       <path fill="#404040" d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
@@ -419,6 +443,24 @@
     </symbol></svg>
     <h1>Gulp SVG Symbols demo page</h1>
     <main>
+      <div>
+        <p>#add-circle-outline</p>
+        <svg role="img" class="add-circle-outline">
+          <use xlink:href="#add-circle-outline"></use>
+        </svg>
+      </div>
+      <div>
+        <p>#add-circle</p>
+        <svg role="img" class="add-circle">
+          <use xlink:href="#add-circle"></use>
+        </svg>
+      </div>
+      <div>
+        <p>#add</p>
+        <svg role="img" class="add">
+          <use xlink:href="#add"></use>
+        </svg>
+      </div>
       <div>
         <p>#apps</p>
         <svg role="img" class="apps">
