@@ -46,11 +46,30 @@ gulp.task('svg-build', function() {
 
 //inline SVG defs into JS file
 gulp.task('inject-svg', function(){
-    var svg = fs.readFileSync('dist/svg-symbols.svg', 'utf8');
+
+    var svgArray = fs.readdirSync('build/svg');
+    var tempFile = '';
+    var svgObject = {};
+
+    for (var i=0; i<svgArray.length; i++) {
+        tempFile = fs.readFileSync('build/svg/'+svgArray[i], 'utf8');
+
+        // remove line breaks
+        tempFile = tempFile.replace(/\r\n|\r|\n/gm, '');
+
+        // remove <xml> <!--comments--> <!DOCTYPE> <style>
+        tempFile = tempFile.replace(/<\?xml.+\?>|<!--.+-->|<!DOCTYPE.+d">|<style.+style>/g, '');
+
+        //remove extra white space
+        tempFile = tempFile.replace(/\s+/g, " ");
+
+        // add to json object string
+        svgObject[svgArray[i].slice(0,-4)] = tempFile;
+    }
 
     return gulp.src(['build/tute-icons.js'])
         .pipe(babel())
-        .pipe(replace('__SVG__', svg))
+        .pipe(replace('__REPLACE__', JSON.stringify(svgObject)))
         .pipe(gulp.dest('dist'));
 });
 

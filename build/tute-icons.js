@@ -22,16 +22,26 @@ angular.module('tute-icons', [])
         });
     })
 
-    //outputs <symbol> defs that can be <use>d by the icon directive later
-    .directive('iconDefs', function() {
+    .service('iconService', function() {
+        var icons = __REPLACE__;
+
         return {
-            restrict: 'E',
-            replace: true,
-            template: '__SVG__' //gulp replace task drops in actual SVG here
+            getIcon: function(iconName) {
+                return icons[iconName];
+            }
         }
     })
 
-    .directive('icon', ['$compile', 'iconPushProvider', function($compile, iconPushProvider) {
+    ////outputs <symbol> defs that can be <use>d by the icon directive later
+    //.directive('iconDefs', function() {
+    //    return {
+    //        restrict: 'E',
+    //        replace: true,
+    //        template: '__SVG__' //gulp replace task drops in actual SVG here
+    //    }
+    //})
+
+    .directive('icon', ['$compile', 'iconPushProvider', 'iconService', function($compile, iconPushProvider, iconService) {
         
         const opts = iconPushProvider.getOpts();
 
@@ -42,17 +52,17 @@ angular.module('tute-icons', [])
 
         function compileFn() {
             return function(scope, iElem, iAttrs) {
+
+                var icon = angular.element(iconService.getIcon(iAttrs.icon));
+
                 let cssClasses = [opts.baseClass, opts.baseClass + '-' + iAttrs.icon];
                 if(iAttrs.class) {
                     cssClasses.push(iAttrs.class)
                 }
 
-                let html =`
-                    <svg role="img" class="${cssClasses.join(' ')}">
-                        <use xlink:href="#${iAttrs.icon}"></use>
-                    </svg>`;
+                icon.addClass(cssClasses.join(' '));
                 
-                let e = $compile(html)(scope);
+                let e = $compile(icon)(scope);
                 iElem.replaceWith(e);
             };
         }
