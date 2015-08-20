@@ -60,6 +60,9 @@ gulp.task('inject-svg', function(){
         // remove <xml> <!--comments--> <!DOCTYPE> <style>
         tempFile = tempFile.replace(/<\?xml.+\?>|<!--.+-->|<!DOCTYPE.+d">|<style.+style>/g, '');
 
+        // remove all fill attribute
+        tempFile = tempFile.replace(/fill=+(["'])(\\?.)*?\1/g, "");
+
         //remove extra white space
         tempFile = tempFile.replace(/\s+/g, " ");
 
