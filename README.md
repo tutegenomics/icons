@@ -5,9 +5,6 @@ Example usage:
 ```html
 
 <main ng-app="exampleApp">
-	<!-- outputs symbol definition xml -->
-	<icon-defs></icon-defs>
-
 	<!-- use svg symbol/icon -->
 	<icon icon="apps" class="my custom classes here"></icon>
 	<icon icon="grid-on"></icon>
