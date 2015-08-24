@@ -5,7 +5,7 @@
   "authors": [
     "Tony <tonylefler@gmail.com>"
   ],
-  "main": "dist/icon-push.js",
+  "main": "dist/tute-icons.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
