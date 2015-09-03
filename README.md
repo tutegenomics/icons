@@ -22,7 +22,7 @@ npm install tute-icons
 </main>
 
 <script src="build/lib/angular/angular.min.js"></script>
-<script src="dist/icon-push.js"></script>
+<script src="dist/tute-icons.js"></script>
 <script>
 	//include module in app
 	angular.module('exampleApp', [
