@@ -47,11 +47,14 @@ gulp.task('svg-build', function() {
 //inline SVG defs into JS file
 gulp.task('inject-svg', function(){
 
-    var svgArray = fs.readdirSync('build/svg');
+    var svgArray = fs.readdirSync('build/svg').filter(function(file) {
+        //filter out .DS_Store, etc
+        return file.indexOf('.') !== 0;
+    });
     var tempFile = '';
     var svgObject = {};
 
-    for (var i=0; i<svgArray.length; i++) {
+    for (var i = 0; i < svgArray.length; i++) {
         tempFile = fs.readFileSync('build/svg/'+svgArray[i], 'utf8');
 
         // remove line breaks
