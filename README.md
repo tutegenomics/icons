@@ -1,6 +1,17 @@
 # Tute Icons
 
-Example usage:
+## Install
+
+```
+bower install tute-icons
+```
+
+```
+npm install tute-icons
+```
+
+
+## Example usage
 
 ```html
 
@@ -15,17 +26,17 @@ Example usage:
 <script>
 	//include module in app
 	angular.module('exampleApp', [
-		'iconPush'
+		'tute-icons'
 	])
-	//if you want to configure options: 
-	.run(function(iconPushProvider) {
-		iconPushProvider.setOpts({
+	//if you want to configure options:
+	.run(function(tuteIconProvider) {
+		tuteIconProvider.setOpts({
 			baseClass: 'icon-ex'
 		});
 	});
 </script>
 ```
 
-See icons-manifest.json to quickly see all available icons. 
+See icons-manifest.json to quickly see all available icons.
 
 Only needed SVGs are included in the build. The `google-svgs` folder is all of Google's icons. The ones included in the Tute icon build process are in the `svg` folder.
