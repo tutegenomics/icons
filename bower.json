@@ -1,11 +1,11 @@
 {
   "name": "icons",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/tutegenomics/icons",
   "authors": [
     "Tony <tonylefler@gmail.com>"
   ],
-  "main": "dist/icon-push.js",
+  "main": "dist/tute-icons.js",
   "license": "MIT",
   "ignore": [
     "**/.*",

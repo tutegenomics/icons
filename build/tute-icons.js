@@ -1,6 +1,13 @@
-angular.module('tute-icons', [])
-    
-    .provider('iconPushProvider', function iconPushProvider() {
+/* commonjs package manager support */
+if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.exports === exports) {
+    module.exports = 'tute-icons';
+}
+
+(function (window, angular) {
+
+    angular.module('tute-icons', [])
+
+    .provider('tuteIconProvider', function tuteIconProvider() {
         let defaults = {
             baseClass: 'icon'
         };
@@ -22,7 +29,7 @@ angular.module('tute-icons', [])
         });
     })
 
-    .service('iconService', function() {
+    .service('tuteIconService', function tuteIconService() {
         var icons = __REPLACE__;
 
         return {
@@ -41,9 +48,9 @@ angular.module('tute-icons', [])
     //    }
     //})
 
-    .directive('icon', ['$compile', 'iconPushProvider', 'iconService', function($compile, iconPushProvider, iconService) {
-        
-        const opts = iconPushProvider.getOpts();
+    .directive('icon', ['$compile', 'tuteIconProvider', 'tuteIconService', function icon($compile, tuteIconProvider, tuteIconService) {
+
+        const opts = tuteIconProvider.getOpts();
 
         return {
             restrict: 'E',
@@ -53,7 +60,7 @@ angular.module('tute-icons', [])
         function compileFn() {
             return function(scope, iElem, iAttrs) {
 
-                var icon = angular.element(iconService.getIcon(iAttrs.icon));
+                var icon = angular.element(tuteIconService.getIcon(iAttrs.icon));
 
                 let cssClasses = [opts.baseClass, opts.baseClass + '-' + iAttrs.icon];
                 if(iAttrs.class) {
@@ -61,10 +68,12 @@ angular.module('tute-icons', [])
                 }
 
                 icon.addClass(cssClasses.join(' '));
-                
+
                 let e = $compile(icon)(scope);
                 iElem.replaceWith(e);
             };
         }
 
     }]);
+
+})(window, window.angular);
