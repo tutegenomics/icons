@@ -73,7 +73,7 @@ gulp.task('inject-svg', function(){
         svgObject[svgArray[i].slice(0,-4)] = tempFile;
     }
 
-    return gulp.src(['build/tute-icons.js'])
+    return gulp.src(['build/tute-icons.js', 'build/tute-icons-react.jsx'])
         .pipe(babel())
         .pipe(replace('__REPLACE__', JSON.stringify(svgObject)))
         .pipe(gulp.dest('dist'));

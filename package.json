@@ -1,8 +1,8 @@
 {
   "name": "tute-icons",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
-  "main": "dist/tute-icons.js",
+  "main": ["dist/tute-icons-react.jsx", "dist/tute-icons.js"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/tutegenomics/icons",
   "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.0",
     "gulp-cheerio": "^0.6.2",
@@ -26,5 +28,9 @@
     "gulp-svg-symbols": "^0.3.1",
     "gulp-watch": "^4.3.4",
     "run-sequence": "^1.1.2"
+  },
+  "dependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
   }
 }
