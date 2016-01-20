@@ -13,28 +13,26 @@ npm install tute-icons
 
 ## Example usage
 
-```html
-
-<main ng-app="exampleApp">
-	<!-- use svg symbol/icon -->
-	<icon icon="apps" class="my custom classes here"></icon>
-	<icon icon="grid-on"></icon>
-</main>
-
-<script src="build/lib/angular/angular.min.js"></script>
-<script src="dist/tute-icons.js"></script>
-<script>
-	//include module in app
-	angular.module('exampleApp', [
-		'tute-icons'
-	])
-	//if you want to configure options:
-	.run(function(tuteIconProvider) {
-		tuteIconProvider.setOpts({
-			baseClass: 'icon-ex'
-		});
+```javascript
+// ANGULAR
+// include module in app
+angular.module('exampleApp', [
+	require('tute-icons')
+])
+// if you want to configure options:
+.run(function(tuteIconProvider) {
+	tuteIconProvider.setOpts({
+		baseClass: 'icon-ex'
 	});
-</script>
+});
+
+// html usage: <icon icon="grid-on"></icon>
+
+// REACT
+// import the react component from package
+import TuteIcon from 'tute-icons/dist/react';
+
+// JSX usage: <TuteIcon icon="star" />
 ```
 
 See icons-manifest.json to quickly see all available icons.

@@ -2,7 +2,7 @@
   "name": "tute-icons",
   "version": "1.0.5",
   "description": "",
-  "main": "dist/tute-icons.js",
+  "main": "dist/angular.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

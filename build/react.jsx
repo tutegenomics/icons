@@ -1,7 +1,7 @@
 var React = require('react');
 
 
-export class tuteIcons extends React.Component {
+export class TuteIcons extends React.Component {
 
 	render() {
 		let icons = __REPLACE__;
@@ -14,5 +14,5 @@ export class tuteIcons extends React.Component {
 
 /* commonjs package manager support */
 if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.exports === exports) {
-	module.exports = tuteIcons;
+	module.exports = TuteIcons;
 }
