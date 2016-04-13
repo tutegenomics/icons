@@ -29,8 +29,6 @@
 <body>
 
 	<main ng-app="exampleApp">
-		<!-- outputs symbol definition xml -->
-		<icon-defs></icon-defs>
 
 		<!-- use svg symbol/icon -->
 		<icon icon="apps" class="my custom classes here"></icon>
@@ -42,20 +40,13 @@
 
 	</main>
 
-	<script src="build/lib/angular/angular.min.js"></script>
-	<script src="dist/icon-push.js"></script>
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="dist/angular.js"></script>
 	<script>
 		//include module in app
 		angular.module('exampleApp', [
 			'tute-icons'
-		])
-		//if you want to configure options: 
-		.run(function(iconPushProvider) {
-			iconPushProvider.setOpts({
-				baseClass: 'icon-ex'
-			});
-		});
-
+		]);
 	</script>
 
 </body>

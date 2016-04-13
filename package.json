@@ -1,6 +1,6 @@
 {
-  "name": "tute-icons",
-  "version": "1.0.9",
+	"name": "@tutegenomics/tute-icons",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/angular.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "run-sequence": "^1.1.2"
   },
   "dependencies": {
+    "angular": "^1.5.3",
     "react": "^0.14.6",
     "react-dom": "^0.14.6"
   }
